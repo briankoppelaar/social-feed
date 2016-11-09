@@ -285,6 +285,7 @@ if (typeof Object.create !== 'function') {
                                     var image_url = element.entities.media[0].media_url_https;
                                     if (image_url) {
                                         post.attachment = '<img class="attachment" src="' + image_url + '" />';
+                                        post.image_url = image_url;
                                     }
                                 }
                             }
@@ -344,6 +345,7 @@ if (typeof Object.create !== 'function') {
                         } else if (element.object_id) {
                             image_url = Feed.facebook.graph + element.object_id + '/picture/?type=normal';
                         }
+                        post.image_url = image_url;
                         return '<img class="attachment" src="' + image_url + '" />';
                     },
                     getExternalImageURL: function(image_url, parameter) {
@@ -447,6 +449,7 @@ if (typeof Object.create !== 'function') {
                                         }
                                     }
                                     post.attachment = '<img class="attachment" src="' + image + '"/>';
+                                    post.image_url = image;
                                 });
                             }
                         }
@@ -534,6 +537,7 @@ if (typeof Object.create !== 'function') {
                         post.link = element.link;
                         if (options.show_media) {
                             post.attachment = '<img class="attachment" src="' + element.images.standard_resolution.url + '' + '" />';
+                            post.image_url = element.images.standard_resolution.url;
                         }
                         return post;
                     }
@@ -590,10 +594,13 @@ if (typeof Object.create !== 'function') {
                             if (element.attachment) {
                                 if (element.attachment.type === 'link')
                                     post.attachment = '<img class="attachment" src="' + element.attachment.link.image_src + '" />';
+                                    post.image_url = element.attachment.link.image_src;
                                 if (element.attachment.type === 'video')
                                     post.attachment = '<img class="attachment" src="' + element.attachment.video.image_big + '" />';
+                                    post.image_url = element.attachment.video.image_big;
                                 if (element.attachment.type === 'photo')
                                     post.attachment = '<img class="attachment" src="' + element.attachment.photo.src_big + '" />';
+                                    post.image_url = element.attachment.photo.src_big;
                             }
                         }
 
@@ -662,6 +669,7 @@ if (typeof Object.create !== 'function') {
                             if (options.show_media) {
                                 if (element['media$thumbnail']) {
                                     post.attachment = '<img class="attachment" src="' + element['media$thumbnail']['url'] + '" />';
+                                    post.image_url = element['media$thumbnail']['url'];
                                 }
                             }
 
@@ -718,6 +726,7 @@ if (typeof Object.create !== 'function') {
                         post.link = element.link ? element.link : 'https://www.pinterest.com/pin/' + element.id;
                         if (options.show_media) {
                             post.attachment = '<img class="attachment" src="' + element.image['original'].url + '" />';
+                            post.image_url = element.image['original'].url;
                         }
                         return post;
                     }
@@ -776,6 +785,7 @@ if (typeof Object.create !== 'function') {
                         post.link = item.link.href;
                         if (options.show_media && item.thumbnail !== undefined ) {
                             post.attachment = '<img class="attachment" src="' + item.thumbnail.url + '" />';
+                            post.image_url = item.thumbnail.url;
                         }
                         return post;
                     }
