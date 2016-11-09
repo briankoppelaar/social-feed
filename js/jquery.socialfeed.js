@@ -275,6 +275,7 @@ if (typeof Object.create !== 'function') {
                             post.author_picture = element.user.profile_image_url_https;
                             post.post_url = post.author_link + '/status/' + element.id_str;
                             post.author_name = element.user.name;
+                            post.username = element.user.screen_name;
                             post.message = element.text;
                             post.description = '';
                             post.link = 'http://twitter.com/' + element.user.screen_name + '/status/' + element.id_str;
@@ -371,6 +372,7 @@ if (typeof Object.create !== 'function') {
                         post.author_link = 'http://facebook.com/' + element.from.id;
                         post.author_picture = Feed.facebook.graph + element.from.id + '/picture';
                         post.author_name = element.from.name;
+                        post.username = '';
                         post.name = element.name || "";
                         post.message = (text) ? text : '';
                         post.description = (element.description) ? element.description : '';
@@ -427,6 +429,7 @@ if (typeof Object.create !== 'function') {
                         post.author_link = element.actor.url;
                         post.author_picture = element.actor.image.url;
                         post.author_name = element.actor.displayName;
+                        post.username = '';
 
                         if (options.show_media === true) {
                             if (element.object.attachments) {
@@ -525,6 +528,7 @@ if (typeof Object.create !== 'function') {
                         post.author_link = 'http://instagram.com/' + element.user.username;
                         post.author_picture = element.user.profile_picture;
                         post.author_name = element.user.full_name || element.user.username;
+                        post.username = element.user.username;
                         post.message = (element.caption && element.caption) ? element.caption.text : '';
                         post.description = '';
                         post.link = element.link;
@@ -581,6 +585,7 @@ if (typeof Object.create !== 'function') {
                         post.dt_create = moment.unix(element.date);
                         post.description = ' ';
                         post.message = Utility.stripHTML(element.text);
+                        post.username = '';
                         if (options.show_media) {
                             if (element.attachment) {
                                 if (element.attachment.type === 'link')
@@ -649,6 +654,7 @@ if (typeof Object.create !== 'function') {
                             post.author_link = element.author[0]['uri']['$t'];
                             post.author_picture = 'http:' + element.author[0]['gd$image']['src'];
                             post.author_name = element.author[0]['name']['$t'];
+                            post.username = '';
                             post.message = element.title['$t'] + '</br></br>' + stripHTML(element.content['$t']);
                             post.description = '';
                             post.link = element.link.pop().href;
@@ -705,6 +711,7 @@ if (typeof Object.create !== 'function') {
                         post.author_link = element.creator.url;
                         post.author_picture = element.creator.image['60x60' ].url;
                         post.author_name =  element.creator.first_name + element.creator.last_name;
+                        post.username = '';
                         post.message = element.note;
                         post.description = '';
                         post.social_network = 'pinterest';
@@ -759,6 +766,7 @@ if (typeof Object.create !== 'function') {
                         if( item.creator !== undefined ){
                             post.author_name = item.creator;
                         }
+                        post.username = '';
                         post.message = item.title;
                         post.description = '';
                         if( item.summary !== undefined ){
